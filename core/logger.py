@@ -29,7 +29,7 @@ def get_logger(name: str = "DTS", level: int = logging.INFO) -> logging.Logger:
 
     # Format the log message
     formatter = logging.Formatter(
-        "%(levelname)s:     %(name)s | %(asctime)s | (%(module)s.%(funcName)s)  → %(message)s",
+        "%(levelname)s:     %(name)s | %(asctime)s | (%(module)s.%(funcName)s) → %(message)s",
         datefmt="%b %d %Y - %I:%M:%S %p",
     )
 
