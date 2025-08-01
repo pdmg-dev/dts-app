@@ -1,6 +1,9 @@
-from pydantic_settings import BaseSettings
-from pydantic import Field
+# core/config.py
+
 from datetime import timedelta
+
+from pydantic import Field
+from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
@@ -14,11 +17,13 @@ class Settings(BaseSettings):
     # JWT/Auth
     jwt_secret_key: str = Field("supersecret", description="Secret key for JWT")
     jwt_algorithm: str = Field("HS256", description="Algorithm for JWT")
-    access_token_expire_minutes: int = Field(30, description="JWT expiration in minutes")
+    access_token_expire_minutes: int = Field(
+        30, description="JWT expiration in minutes"
+    )
 
     @property
     def access_token_expire_timedelta(self) -> timedelta:
-        """Handy timedelta for JWT expiration."""
+        """Handle timedelta for JWT expiration."""
         return timedelta(minutes=self.access_token_expire_minutes)
 
     model_config = {

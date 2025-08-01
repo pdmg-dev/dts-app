@@ -1,7 +1,9 @@
+# run.py
+
 """
 DTS App Entrypoint Script
 
-This script runs the DTS FastAPI application without the need to type 
+This script runs the DTS FastAPI application without the need to type
 a long uvicorn command. Supports both development and production modes.
 
 Usage:
@@ -10,27 +12,22 @@ Usage:
 """
 
 import sys
+
 import uvicorn
+
+from core.logger import configure_uvicorn_logging
 
 
 def run_dev() -> None:
     """Run the FastAPI app in development mode with auto-reload."""
-    uvicorn.run(
-        "main:app",
-        host="0.0.0.0",
-        port=8000,
-        reload=True
-    )
+    configure_uvicorn_logging()
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
 
 
 def run_prod() -> None:
     """Run the FastAPI app in production mode without reload."""
-    uvicorn.run(
-        "main:app",
-        host="0.0.0.0",
-        port=8000,
-        reload=False
-    )
+    configure_uvicorn_logging()
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=False)
 
 
 if __name__ == "__main__":
